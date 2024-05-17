@@ -1,41 +1,41 @@
 
-service:
+services:
 
   nginx:
     container_name: nginx
-  build:
-    context: ./requirements/nginx
-    dockerfile: Dockerfile
-  restart: on-failure
-  network:
-    - inception
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    restart: on-failure
+    networks:
+      - inception
 
 
 
   wordpress:
     container_name: wordpress
-  build:
+    build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
-  restart: on-failure
-  network:
-    - inception
+    restart: on-failure
+    networks:
+      - inception
 
 
 
-  mariaDB:
-    container_name: mariaDB
-  build:
+  mariadb:
+    container_name: mariadb
+    build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
-  restart: on-failure
-  network:
-    - inception
+    restart: on-failure
+    networks:
+      - inception
 
 
 
 
-network:
+networks:
   inception:
     driver: bridge
 
