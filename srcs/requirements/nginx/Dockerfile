@@ -10,7 +10,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY html /usr/share/nginx/html
 
 # Espone la porta "" per l'accesso HTTP
-EXPOSE
+EXPOSE 80
 
 # Comando per avviare Nginx in primo piano
 CMD ["nginx", "-g", "daemon off;"]

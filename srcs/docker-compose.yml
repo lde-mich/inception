@@ -18,8 +18,12 @@ services:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
     restart: on-failure
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
     networks:
       - inception
+    volumes:
+      - wordpress_data:/var/www/html
 
 
 
@@ -28,9 +32,18 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_USER: lde-mich
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: mariadb #crea il database chiamato "mariabd" se non esiste
     restart: on-failure
+    ports:
+      - "3307:3306"
     networks:
       - inception
+    volumes:
+      - db_data:/var/lib/mysql
 
 
 
@@ -40,6 +53,8 @@ networks:
     driver: bridge
 
 
-      #volumes:
-      #db_data
-      #wb_file
+volumes:
+  db_data:
+  wordpress_data:
+
+
