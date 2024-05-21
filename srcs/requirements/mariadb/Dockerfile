@@ -4,12 +4,15 @@ FROM debian:11
 RUN apt-get update && apt-get install -y mariadb-server && apt-get clean
 
 RUN mkdir -p /var/run/mysqld
-RUN chmod -R 777 var/run/mysqld
+RUN chmod -R 777 /var/run/mysqld
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
+COPY ./tools/init.sql /docker-entrypoint-initdb.d/init.sql
+
 # avvio di MariaDB
-#CMD ["tail", "-f", "/dev/null"] #comando per testare e far andare il container
-								 #in loop cosi da entrarci dentro
+#CMD ["tail", "-f", "/dev/null"] 
+								#comando per far andare il container
+							    #in loop, cosi da poterci entrare
 
 CMD ["mysqld"]
 
