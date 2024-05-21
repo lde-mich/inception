@@ -1,4 +1,9 @@
 
+CREATE DATABASE mariadb;
+
+CREATE USER 'lde-mich'@'localhost' IDENTIFIED BY 'root';
+GRANT ALL PRIVILEGES ON mariadb.* TO 'lde-mich'@'localhost';
+
 USE mariadb;
 
 CREATE TABLE IF NOT EXISTS `Users`

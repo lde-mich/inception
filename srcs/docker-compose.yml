@@ -34,11 +34,6 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_USER: lde-mich
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: mariadb #crea il database chiamato "mariabd" se non esiste
     restart: on-failure
     ports:
       - "3307:3306"
