@@ -8,9 +8,11 @@ services:
       dockerfile: Dockerfile
     restart: on-failure
     ports:
-      - "9000:9000"
+      - "443:443"
     networks:
       - inception
+    volumes:
+      - wordpress_data:/usr/share/nginx/html:ro
 
 
 
@@ -20,6 +22,8 @@ services:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
     restart: on-failure
+    depends_on:
+      - mariadb
     environment:
       WORDPRESS_DB_HOST: mariadb:3306 # esponendo la porta 3306 per collegarlo al db
     networks:
