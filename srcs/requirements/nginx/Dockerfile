@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y nginx openssl && apt-get clean \
 	/etc/nginx/certs/server.key -out /etc/nginx/certs/server.crt -subj \
 	"/C=IT/ST=Rome/L=Rome/O=42RomaLuis/OU=lde-mich/CN=lde-mich.42.fr"
 
+
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./conf/index.html /usr/share/nginx/html
 
