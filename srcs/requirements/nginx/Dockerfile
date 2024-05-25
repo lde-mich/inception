@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:bookworm
 
 # Imposta le variabili di ambiente per evitare interattività durante l'installazione
 ENV DEBIAN_FRONTEND=noninteractive

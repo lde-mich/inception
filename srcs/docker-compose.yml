@@ -12,7 +12,9 @@ services:
     networks:
       - inception
     volumes:
-      - wordpress_data:/usr/share/nginx/html:ro
+      - wordpress_data:/var/www/html
+    depends_on:
+      - wordpress
 
 
 
@@ -24,12 +26,17 @@ services:
     restart: on-failure
     depends_on:
       - mariadb
-    environment:
-      WORDPRESS_DB_HOST: mariadb:3306 # esponendo la porta 3306 per collegarlo al db
     networks:
       - inception
     volumes:
       - wordpress_data:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306 # esponendo la porta 3306 per collegarlo al db
+      WORDPRESS_DB_USER: lde-mich
+      WORDPRESS_DB_PASSWORD: root
+      WORDPRESS_DB_NAME: mariadb
+    depends_on:
+      - mariadb
 
 
 
