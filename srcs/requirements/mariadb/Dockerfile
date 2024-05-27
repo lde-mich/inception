@@ -14,13 +14,10 @@ RUN chmod +x /usr/local/bin/init_db.sh
 # Esegue lo script
 RUN /usr/local/bin/init_db.sh
 
+# avvio di MariaDB
 CMD ["mysqld"]
 
 
-
-
-# avvio di MariaDB
+#comando per far andare il container in loop
 #CMD ["tail", "-f", "/dev/null"] 
-								#comando per far andare il container
-							    #in loop, cosi da poterci entrare
 
