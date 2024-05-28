@@ -48,6 +48,9 @@ RUN curl -O https://wordpress.org/latest.tar.gz \
     && chown -R www-data:www-data /var/www/html/ \
     && chmod -R 755 /var/www/html/
 
+# www.conf 
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+
 #permessi
 COPY ./tools/setup.sh /usr/local/bin/setup.sh
 RUN chmod +x /usr/local/bin/setup.sh

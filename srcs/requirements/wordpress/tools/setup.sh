@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /var/www/html/
+
 wp core download --version=6.5 --allow-root
 
 # Configurare il database per WordPress
@@ -10,6 +12,8 @@ wp config create \
 	--dbpass=${WORDPRESS_DB_PASSWORD} \
 	--dbhost=${WORDPRESS_DB_HOST} \
 	--allow-root
+
+mv /var/www/html/wp-config-sample.php wp-config.php
 
 # Installare WordPress
 wp core install \
