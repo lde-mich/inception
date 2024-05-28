@@ -1,16 +1,9 @@
 #!/bin/bash
 
-#aspetta che il database sia attivo
-echo "Waiting for database connection..."
-until nc -z -v -w30 ${WORDPRESS_DB_HOST%:*} ${WORDPRESS_DB_HOST##*:}; do
-    echo "Waiting for database connection..."
-    sleep 5
-done
-echo "Database is up and running!"
-
+wp core download --version=6.5 --allow-root
 
 # Configurare il database per WordPress
-wp core config \
+wp config create \
 	--path=/var/www/html \
 	--dbname=${WORDPRESS_DB_NAME} \
 	--dbuser=${WORDPRESS_DB_USER} \
@@ -27,4 +20,7 @@ wp core install \
 	--admin_password="lde-mich" \
 	--admin_email="lde-mich@example.com" \
 	--allow-root
+
+# Avviare php-fpm
+/usr/sbin/php-fpm8.2 -F
 

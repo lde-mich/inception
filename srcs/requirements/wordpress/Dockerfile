@@ -38,7 +38,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
 
-# Crea la directory target se non esiste
+# Crea la directory se non esiste
 RUN mkdir -p /var/www/html
 
 #installa e configura WordPress
@@ -52,14 +52,14 @@ RUN curl -O https://wordpress.org/latest.tar.gz \
 COPY ./tools/setup.sh /usr/local/bin/setup.sh
 RUN chmod +x /usr/local/bin/setup.sh
 
-#eseguire lo script
-RUN /usr/local/bin/setup.sh 
-
 #porta
 EXPOSE 9000
 
+#avvia setup.sh
+CMD ["./usr/local/bin/setup.sh"]
+
 # Avvia php-fpm
-CMD ["./usr/sbin/php-fpm8.2", "-F"]
+#CMD ["./usr/sbin/php-fpm8.2", "-F"]
 
 #comando per far andare il container in loop
 #CMD ["tail", "-f", "/dev/null"] 
