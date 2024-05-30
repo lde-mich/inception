@@ -15,11 +15,14 @@ up:
 
 down:
 	docker-compose -f srcs/docker-compose.yml down -v --rmi all
+	sudo rm -rf /home/${_USER}/data/mariadb
+	sudo rm -rf /home/${_USER}/data/wordpress
 
 
 
 
-rall:
+
+rall: down
 	docker system prune -a --force --volumes
 
 
