@@ -1,25 +1,21 @@
 FROM debian:bookworm
 
-#copio gli argomenti passati nel docker-compose
-#facendo una copia dei valori dentro le variabili d'ambiente
-ARG WORDPRESS_DB_HOST
-ENV WORDPRESS_DB_HOST ${WORDPRESS_DB_HOST}
+#copio gli arg dal docker-compose
+#ARG WORDPRESS_DB_HOST
+#ARG WORDPRESS_DB_USER
+#ARG WORDPRESS_DB_PASSWORD
+#ARG WORDPRESS_DB_NAME
 
-ARG WORDPRESS_DB_USER
-ENV WORDPRESS_DB_USER ${WORDPRESS_DB_USER}
-
-ARG WORDPRESS_DB_PASSWORD
-ENV WORDPRESS_DB_PASSWORD ${WORDPRESS_DB_PASSWORD}
-
-ARG WORDPRESS_DB_NAME
-ENV WORDPRESS_DB_NAME ${WORDPRESS_DB_NAME}
+#ENV WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+#ENV WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+#ENV WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+#ENV WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 #installa i pacchetti necessari per WP
 RUN apt-get update && \
     apt-get install -y \
-	netcat-traditional \
     php-fpm \
     php-mysql \
     php-cli \

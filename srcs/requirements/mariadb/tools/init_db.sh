@@ -2,23 +2,14 @@
 
 service mariadb start
 
-echo "CREATE DATABASE mariadb;" | mariadb -u root
+echo "CREATE DATABASE IF NOT EXISTS mariadb;" | mariadb -u root
+sleep .15
 
-echo "CREATE USER 'lde-mich'@'localhost' IDENTIFIED BY 'root';" | mariadb -u root
+echo "CREATE USER IF NOT EXISTS 'lde-mich'@'%' IDENTIFIED BY 'root';" | mariadb -u root
+sleep .15
 
-echo "GRANT ALL PRIVILEGES ON mariadb.* TO 'lde-mich'@'localhost';" | mariadb -u root
-
-echo "USE mariadb; CREATE TABLE IF NOT EXISTS \`Users\` (
-    \`id\` INT NOT NULL AUTO_INCREMENT,
-    \`username\` VARCHAR(45) NULL,
-    \`password\` VARCHAR(45) NULL,
-    PRIMARY KEY (\`id\`)
-) ENGINE = InnoDB;" | mariadb -u root
-
-echo "USE mariadb; INSERT INTO Users (username, password)
-    VALUES ('lde-mich', 'lde-mich');" | mariadb -u root
-echo "USE mariadb; INSERT INTO Users (username, password)
-    VALUES ('luca', 'luca');" | mariadb -u root
+echo "GRANT ALL PRIVILEGES ON mariadb.* TO 'lde-mich'@'%';" | mariadb -u root
+sleep .15
 
 service mariadb stop
 
