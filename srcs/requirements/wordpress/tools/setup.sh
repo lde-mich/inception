@@ -28,6 +28,11 @@ wp core install \
 	--admin_email="lde-mich@example.com" \
 	--allow-root
 
+wp user create userprova userprova@example.com \
+	--role=editor \
+	--user_pass=userpassword \
+	--allow-root
+
 # Avviare php-fpm
 /usr/sbin/php-fpm8.2 -F
 
