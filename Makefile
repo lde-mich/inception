@@ -1,6 +1,6 @@
 
 _USER=${USER}
-_CUSTOM_DOMAIN=lde-mich
+_CUSTOM_DOMAIN=lde-mich.42.fr
 _HOSTS_FILE=/etc/hosts
 
 up:
